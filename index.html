@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Expense Tracker - Premium Money Tracking</title>
-    <meta name="description" content="A minimal, premium expense and income tracking app with clean analytics and ultra-fast data entry.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Dabas Money - Expense Tracker</title>
+    <meta name="description"
+        content="A minimal, premium expense and income tracking app with clean analytics and ultra-fast data entry.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="chart.min.js"></script>
     <link rel="stylesheet" href="styles.css">
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#000000">
@@ -19,39 +21,41 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="Dabas Money">
 </head>
+
 <body>
     <div id="app">
         <!-- Navigation -->
         <nav class="nav-bottom" id="navBottom">
             <button class="nav-item active" data-page="home">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                    <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"/>
-                    <path d="M9 22V12h6v10"/>
+                    <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
+                    <path d="M9 22V12h6v10" />
                 </svg>
                 <span>Home</span>
             </button>
             <button class="nav-item" data-page="transactions">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                    <path d="M3 6h18M3 12h18M3 18h18"/>
+                    <path d="M3 6h18M3 12h18M3 18h18" />
                 </svg>
                 <span>Transactions</span>
             </button>
             <button class="nav-item" data-page="analytics">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                    <path d="M18 20V10M12 20V4M6 20v-6"/>
+                    <path d="M18 20V10M12 20V4M6 20v-6" />
                 </svg>
                 <span>Analytics</span>
             </button>
             <button class="nav-item" data-page="categories">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                    <path d="M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4zM14 14h6v6h-6z"/>
+                    <path d="M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4zM14 14h6v6h-6z" />
                 </svg>
                 <span>Categories</span>
             </button>
             <button class="nav-item" data-page="settings">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                    <circle cx="12" cy="12" r="3"/>
-                    <path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83 0 2 2 0 010-2.83l.06-.06a1.65 1.65 0 00.33-1.82 1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 010-2.83 2 2 0 012.83 0l.06.06a1.65 1.65 0 001.82.33H9a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 0 2 2 0 010 2.83l-.06.06a1.65 1.65 0 00-.33 1.82V9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/>
+                    <circle cx="12" cy="12" r="3" />
+                    <path
+                        d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83 0 2 2 0 010-2.83l.06-.06a1.65 1.65 0 00.33-1.82 1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 010-2.83 2 2 0 012.83 0l.06.06a1.65 1.65 0 001.82.33H9a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 0 2 2 0 010 2.83l-.06.06a1.65 1.65 0 00-.33 1.82V9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z" />
                 </svg>
                 <span>Settings</span>
             </button>
@@ -81,6 +85,48 @@
                     </div>
                 </div>
 
+                <!-- Budget Progress Section -->
+                <div class="budget-section" id="budgetSection" style="display: none;">
+                    <div class="glass-card budget-card">
+                        <div class="budget-header">
+                            <span class="budget-title">Monthly Budget</span>
+                            <span class="budget-amount"><span id="budgetSpent">₹0</span> / <span
+                                    id="budgetTotal">₹0</span></span>
+                        </div>
+                        <div class="budget-progress">
+                            <div class="budget-progress-bar" id="budgetProgressBar" style="width: 0%"></div>
+                        </div>
+                        <div class="budget-status" id="budgetStatus">Set your budget in Settings</div>
+                    </div>
+                </div>
+
+                <!-- Quick Add Section -->
+                <div class="quick-add-section">
+                    <div class="quick-add-title">Quick Add</div>
+                    <div class="quick-add-grid" id="quickAddGrid">
+                        <button class="quick-add-btn" data-category="Food" data-type="expense">
+                            <span class="quick-add-emoji">🍔</span>
+                            <span class="quick-add-label">Food</span>
+                        </button>
+                        <button class="quick-add-btn" data-category="Transport" data-type="expense">
+                            <span class="quick-add-emoji">🚗</span>
+                            <span class="quick-add-label">Transport</span>
+                        </button>
+                        <button class="quick-add-btn" data-category="Shopping" data-type="expense">
+                            <span class="quick-add-emoji">🛒</span>
+                            <span class="quick-add-label">Shopping</span>
+                        </button>
+                        <button class="quick-add-btn" data-category="Bills" data-type="expense">
+                            <span class="quick-add-emoji">📱</span>
+                            <span class="quick-add-label">Bills</span>
+                        </button>
+                        <button class="quick-add-btn" data-category="Salary" data-type="income">
+                            <span class="quick-add-emoji">💰</span>
+                            <span class="quick-add-label">Salary</span>
+                        </button>
+                    </div>
+                </div>
+
                 <div class="glass-card">
                     <h2 class="section-title glow-text-subtle">Recent Transactions</h2>
                     <div class="transactions-list" id="recentTransactions">
@@ -98,9 +144,10 @@
 
                 <div class="filters-bar glass-card">
                     <div class="search-wrapper">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                            <circle cx="11" cy="11" r="8"/>
-                            <path d="M21 21l-4.35-4.35"/>
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="1.5">
+                            <circle cx="11" cy="11" r="8" />
+                            <path d="M21 21l-4.35-4.35" />
                         </svg>
                         <input type="text" id="searchInput" placeholder="Search transactions..." class="search-input">
                     </div>
@@ -163,15 +210,17 @@
 
                 <div class="export-section">
                     <button class="btn-export" id="exportCSV">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                            <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/>
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="1.5">
+                            <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3" />
                         </svg>
                         Export CSV
                     </button>
                     <button class="btn-export" id="exportPDF">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                            <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
-                            <path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/>
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="1.5">
+                            <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" />
+                            <path d="M14 2v6h6M16 13H8M16 17H8M10 9H8" />
                         </svg>
                         Export PDF
                     </button>
@@ -195,8 +244,9 @@
                         <!-- Categories will be rendered here -->
                     </div>
                     <button class="btn-add-category" id="addCategoryBtn">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M12 5v14M5 12h14"/>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M12 5v14M5 12h14" />
                         </svg>
                         Add Category
                     </button>
@@ -210,7 +260,28 @@
                     <p class="subtitle">Customize your experience</p>
                 </header>
 
+                <!-- Appearance Settings -->
                 <div class="glass-card settings-card">
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <span class="setting-label">Theme</span>
+                            <span class="setting-desc">Choose light or dark mode</span>
+                        </div>
+                        <div class="theme-toggle" id="themeToggle">
+                            <button class="theme-btn active" data-theme="light" title="Light Mode">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="12" cy="12" r="5" />
+                                    <path
+                                        d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" />
+                                </svg>
+                            </button>
+                            <button class="theme-btn" data-theme="dark" title="Dark Mode">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
                     <div class="setting-item">
                         <div class="setting-info">
                             <span class="setting-label">Currency</span>
@@ -221,6 +292,60 @@
                             <button class="currency-btn" data-currency="USD">$ USD</button>
                         </div>
                     </div>
+                </div>
+
+                <!-- Budget Settings -->
+                <div class="glass-card settings-card">
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <span class="setting-label">Monthly Budget</span>
+                            <span class="setting-desc">Set your spending limit</span>
+                        </div>
+                        <div class="budget-input-wrapper">
+                            <span id="budgetCurrencySymbol">₹</span>
+                            <input type="number" class="budget-input" id="monthlyBudgetInput" placeholder="0" min="0"
+                                step="100">
+                        </div>
+                    </div>
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <span class="setting-label">Category Budgets</span>
+                            <span class="setting-desc">Set limits per category</span>
+                        </div>
+                        <button class="btn-danger" id="manageCategoryBudgets"
+                            style="background: var(--bg-secondary); border-color: var(--border-color);">Manage</button>
+                    </div>
+                </div>
+
+                <!-- Data Management -->
+                <div class="glass-card settings-card">
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <span class="setting-label">Backup & Restore</span>
+                            <span class="setting-desc">Export or import your data</span>
+                        </div>
+                    </div>
+                    <div class="backup-section">
+                        <button class="btn-backup" id="exportDataBtn">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3" />
+                            </svg>
+                            Export
+                        </button>
+                        <button class="btn-backup" id="importDataBtn">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M17 8l-5-5-5 5M12 3v12" />
+                            </svg>
+                            Import
+                        </button>
+                    </div>
+                    <input type="file" id="importFileInput" accept=".json" style="display: none;">
+                </div>
+
+                <!-- Danger Zone -->
+                <div class="glass-card settings-card">
                     <div class="setting-item">
                         <div class="setting-info">
                             <span class="setting-label">Clear All Data</span>
@@ -230,11 +355,12 @@
                     </div>
                 </div>
 
+                <!-- About -->
                 <div class="glass-card settings-card">
                     <div class="setting-item">
                         <div class="setting-info">
-                            <span class="setting-label">About</span>
-                            <span class="setting-desc">Expense Tracker v1.0</span>
+                            <span class="setting-label">Dabas Money</span>
+                            <span class="setting-desc">Version 2.0 • Made with ❤️</span>
                         </div>
                     </div>
                 </div>
@@ -244,7 +370,7 @@
         <!-- Floating Add Button -->
         <button class="fab" id="fabAdd">
             <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M12 5v14M5 12h14"/>
+                <path d="M12 5v14M5 12h14" />
             </svg>
         </button>
 
@@ -254,8 +380,9 @@
                 <div class="modal-header">
                     <h2 class="glow-text-subtle">Add Transaction</h2>
                     <button class="modal-close" id="closeModal">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M18 6L6 18M6 6l12 12"/>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M18 6L6 18M6 6l12 12" />
                         </svg>
                     </button>
                 </div>
@@ -292,8 +419,9 @@
 
                     <button type="submit" class="btn-submit">
                         <span>Add Transaction</span>
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7" />
                         </svg>
                     </button>
                 </form>
@@ -306,20 +434,23 @@
                 <div class="modal-header">
                     <h2 class="glow-text-subtle" id="categoryModalTitle">Add Category</h2>
                     <button class="modal-close" id="closeCategoryModal">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M18 6L6 18M6 6l12 12"/>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M18 6L6 18M6 6l12 12" />
                         </svg>
                     </button>
                 </div>
                 <form id="categoryForm" class="category-form">
                     <div class="form-group">
                         <label for="categoryName">Category Name</label>
-                        <input type="text" id="categoryName" name="categoryName" placeholder="Enter category name" required>
+                        <input type="text" id="categoryName" name="categoryName" placeholder="Enter category name"
+                            required>
                     </div>
                     <div class="form-group">
                         <label>Type</label>
                         <div class="type-toggle small">
-                            <button type="button" class="type-btn active" data-type="expense" id="catTypeExpense">Expense</button>
+                            <button type="button" class="type-btn active" data-type="expense"
+                                id="catTypeExpense">Expense</button>
                             <button type="button" class="type-btn" data-type="income" id="catTypeIncome">Income</button>
                         </div>
                     </div>
@@ -338,7 +469,7 @@
     </div>
 
     <script src="app.js"></script>
-    
+
     <!-- Service Worker Registration for PWA -->
     <script>
         // Register Service Worker for standalone PWA experience
@@ -355,4 +486,5 @@
         }
     </script>
 </body>
+
 </html>

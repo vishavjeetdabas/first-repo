@@ -1,10 +1,11 @@
 // Service Worker for Dabas Money PWA - Full Offline Support
-const CACHE_NAME = 'dabas-money-v2';
+const CACHE_NAME = 'dabas-money-v3';
 const urlsToCache = [
     '/',
     '/index.html',
     '/styles.css',
     '/app.js',
+    '/chart.min.js',
     '/manifest.json',
     '/icon-192.png',
     '/icon-512.png'
