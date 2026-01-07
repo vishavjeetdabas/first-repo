@@ -1192,22 +1192,116 @@ const QuickAdd = {
     },
 
     openQuickAddModal(category, type) {
-        // Pre-fill the transaction modal
+        // First set the type (this also updates category select)
         UI.setTransactionType(type);
-        UI.updateCategorySelect(type);
 
-        // Set the category
-        const categorySelect = document.getElementById('category');
-        if (categorySelect) {
-            categorySelect.value = category;
-        }
+        // Open modal first
+        UI.elements.transactionModal.classList.add('active');
 
-        UI.openTransactionModal();
-
-        // Focus on amount for quick entry
+        // Set the category AFTER a small delay to ensure select is populated
         setTimeout(() => {
+            const categorySelect = document.getElementById('category');
+            if (categorySelect) {
+                // Find and select the matching category
+                for (let i = 0; i < categorySelect.options.length; i++) {
+                    if (categorySelect.options[i].value.toLowerCase() === category.toLowerCase()) {
+                        categorySelect.selectedIndex = i;
+                        break;
+                    }
+                }
+            }
+            // Focus on amount for quick entry
             document.getElementById('amount').focus();
-        }, 100);
+        }, 50);
+    }
+};
+
+// ====== CATEGORY BUDGET MANAGER ======
+
+const CategoryBudget = {
+    init() {
+        this.bindEvents();
+    },
+
+    bindEvents() {
+        const manageBtn = document.getElementById('manageCategoryBudgets');
+        if (manageBtn) {
+            manageBtn.addEventListener('click', () => this.showManager());
+        }
+    },
+
+    showManager() {
+        // Create modal for category budgets
+        const categories = Categories.getAll('expense');
+        const budgets = state.settings.categoryBudgets || {};
+
+        const modalHtml = `
+            <div class="modal-overlay active" id="categoryBudgetModal">
+                <div class="modal glass-card" style="transform: translateY(0);">
+                    <div class="modal-header">
+                        <h2 class="glow-text-subtle">Category Budgets</h2>
+                        <button class="modal-close" id="closeCategoryBudgetModal">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M18 6L6 18M6 6l12 12"/>
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="category-budget-list" style="max-height: 60vh; overflow-y: auto;">
+                        ${categories.map(cat => `
+                            <div class="setting-item">
+                                <div class="setting-info">
+                                    <span class="setting-label">${cat.name}</span>
+                                </div>
+                                <div class="budget-input-wrapper">
+                                    <span>${Currency.getSymbol()}</span>
+                                    <input type="number" class="budget-input category-budget-input" 
+                                           data-category="${cat.name}" 
+                                           value="${budgets[cat.name] || ''}" 
+                                           placeholder="0" min="0" step="100">
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
+                    <button class="btn-submit" id="saveCategoryBudgets" style="margin-top: var(--space-4);">
+                        <span>Save Budgets</span>
+                    </button>
+                </div>
+            </div>
+        `;
+
+        // Add modal to DOM
+        document.body.insertAdjacentHTML('beforeend', modalHtml);
+
+        // Bind events
+        document.getElementById('closeCategoryBudgetModal').addEventListener('click', () => this.closeManager());
+        document.getElementById('saveCategoryBudgets').addEventListener('click', () => this.saveBudgets());
+        document.getElementById('categoryBudgetModal').addEventListener('click', (e) => {
+            if (e.target.id === 'categoryBudgetModal') this.closeManager();
+        });
+    },
+
+    closeManager() {
+        const modal = document.getElementById('categoryBudgetModal');
+        if (modal) modal.remove();
+    },
+
+    saveBudgets() {
+        const inputs = document.querySelectorAll('.category-budget-input');
+        const budgets = {};
+
+        inputs.forEach(input => {
+            const category = input.dataset.category;
+            const value = parseFloat(input.value) || 0;
+            if (value > 0) {
+                budgets[category] = value;
+            }
+        });
+
+        state.settings.categoryBudgets = budgets;
+        Storage.saveSettings(state.settings);
+
+        this.closeManager();
+        UI.showToast('Category budgets saved!');
     }
 };
 
@@ -1375,5 +1469,5 @@ document.addEventListener('DOMContentLoaded', () => {
     Budget.init();
     QuickAdd.init();
     DataBackup.init();
+    CategoryBudget.init();
 });
-
