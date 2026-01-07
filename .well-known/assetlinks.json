@@ -1,8 +1,0 @@
-[{
-  "relation": ["delegate_permission/common.handle_all_urls"],
-  "target": {
-    "namespace": "android_app",
-    "package_name": "app.netlify.dabasmoney.twa",
-    "sha256_cert_fingerprints": ["16:2B:3F:39:81:54:3F:A5:7A:DD:22:AB:D7:6B:99:CE:20:73:1A:4E:E8:5A:E6:66:B9:20:B0:50:A9:17:B1:68"]
-  }
-}]
